@@ -50,7 +50,7 @@ function SignUp( props ){
 
       if(res.data.token){
 
-        localStorage.setItem('x-auth-token', res.data.token);
+        localStorage.setItem('x-auth-header', res.data.token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.jwt}`;
 
         // props.messageCreator( true, res.data.user.username )
@@ -59,11 +59,11 @@ function SignUp( props ){
 
       } else {
 
-        setErrors([res.msg])
+        setErrors([res.data.msg])
 
       }
     })
-    .catch( err => setErrors([err.msg]))
+    .catch( err => console.log('catch error', err))
   }; //handleSubmit
 
 

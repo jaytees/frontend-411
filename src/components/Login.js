@@ -48,7 +48,7 @@ const Login = () => {
 
           history.push('/dashboard');
 
-          console.log('success', res);
+          // console.log('success', res);
 
         } else {
 
