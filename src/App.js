@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Switch, Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 import './Main.css'
 import Navbar from './components/Navbar/Navbar'
 
@@ -13,21 +15,84 @@ import Setup from './views/Setup';
 
 function App() {
   const [open, setOpen] = useState(false)
+  const [user, setUser] = useState({ username: '',
+            email: '',
+            preferences: [] });
+  const [userFeeds, setUserFeeds] = useState([]);
+  const history = useHistory();
+
 
   const navControl = () => {
     open ? setOpen( false ) : setOpen(true)
   }
 
-  /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
-  // const closeNav = () => {
-  //   setOpen(false);
-  // }
+  useEffect( () => {
+
+    //check user is authenticated
+    const token = localStorage.getItem('x-auth-header');
+    if (token){
+
+      axios.defaults.headers.common['x-auth-header'] = token ;
+
+    } else {
+
+      history.push('/login');
+    }
+
+      let url = '';
+    if (process.env.NODE_ENV !== 'production') {
+      url = 'http://localhost:5000';
+    }
+
+
+    axios.get(`${url}/user/dashboard`)
+    .then(res => {
+
+      const user = {
+          username: res.data.username,
+          email: res.data.email,
+          preferences: res.data.preferences
+      }
+
+      const feeds = [];
+      res.data.preferences.forEach( pref => {
+
+        pref.categories.forEach( cat => {
+          feeds.push({
+            label: cat.category_name, 
+            outlet_name: pref.outlet_name,
+            endpoint: cat.category_url,
+            visible: true
+          });
+        }) // categories.forEach
+
+      }); // preferences.forEach
+
+      setUserFeeds( feeds )
+      setUser( user )
+
+    })
+    .catch( err => console.warn(err))
+
+  }, [] ) //useEffect
+
+
+  const onFeedItemClick = (outlet, category) => {
+    const itemIndex = userFeeds.findIndex( f => f.outlet_name === outlet && f.label === category );
+
+    const feedsCopy = [...userFeeds];
+    feedsCopy[itemIndex].visible = !feedsCopy[itemIndex].visible;
+    setUserFeeds( feedsCopy );
+
+  };
+
+
 
 
   return (
     <div className="App" style={ open ? { backgroundColor: 'rgba(0,0,0,0.1)'} : { backgroundColor: 'white' }}>
 
-      <Navbar navOpen={ navControl } openState={ open }/>
+      <Navbar navOpen={ navControl } openState={ open } userData={ user } feedSelectionHandler={ onFeedItemClick }/>
 
 
         <div className="main" style={ open ? { marginLeft: '20vw' } : {marginLeft: '5vw'} }>
@@ -37,7 +102,12 @@ function App() {
               <Route exact path='/login' component={ Login }/>
 
               <Route exact path='/profile/setup' component={ Setup }/>
-              <Route exact path='/dashboard' component={ Dashboard }/>
+
+
+              <Route exact path='/dashboard'
+                render={( props ) =>
+                ( <Dashboard {...props} userFeedData={ userFeeds }/> )}
+              />
 
           </Switch>
         </div>

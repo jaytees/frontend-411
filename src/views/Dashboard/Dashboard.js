@@ -9,154 +9,27 @@ import styles from './Dashboard.module.css'
 import FeedComponent from '../../components/Outlets/FeedComponent'
 
 
-const Dashboard = () => {
-  // const [user, setUser] = useState({});
-  const [user, setUser] = useState({ username: '',
-            email: '',
-            preferences: [] });
-  const [userFeeds, setUserFeeds] = useState([]);
-  // const [loading, setLoading] = useState(false)
-  // const [loaded, setLoaded] = useState(false)
-  const history = useHistory();
+const Dashboard = ( props ) => {
 
-
-  let feedRenders;
-
-
-  useEffect( () => {
-
-    //check user is authenticated
-    const token = localStorage.getItem('x-auth-header');
-    if (token){
-      // console.log('TOKEN FOUND!', token);
-      axios.defaults.headers.common['x-auth-header'] = token ;
-      // setTokenHeaderSet( true );
-    } else {
-
-      history.push('/login');
-    }
-
-      let url = '';
-    if (process.env.NODE_ENV !== 'production') {
-      url = 'http://localhost:5000';
-    }
-
-
-    axios.get(`${url}/user/dashboard`)
-    .then(res => {
-
-      // setLoading(true);
-      //    // setTimeout(() => {
-      //    //    setLoaded(true);
-      //    // }, 3000);
-
-
-      const user = {
-          username: res.data.username,
-          email: res.data.email,
-          preferences: res.data.preferences
-      }
-
-      const feeds = [];
-      res.data.preferences.forEach( pref => {
-
-        pref.categories.forEach( cat => {
-          feeds.push({
-            label: cat.category_name, 
-            outlet_name: pref.outlet_name,
-            endpoint: cat.category_url,
-            visible: true
-          });
-        }) // categories.forEach
-
-      }); // preferences.forEach
-
-      setUserFeeds( feeds )
-      setUser( user )
-
-    })
-    .catch( err => console.warn(err))
-
-  }, [] ) //useEffect
-
-
-  const onFeedItemClick = (outlet, category) => {
-    const itemIndex = userFeeds.findIndex( f => f.outlet_name === outlet && f.label === category );
-    const feedsCopy = [...userFeeds];
-    feedsCopy[itemIndex].visible = !feedsCopy[itemIndex].visible;
-    setUserFeeds( feedsCopy );
-    console.log(feedsCopy);
-  };
-
-
-  // const componentRender = ( outlet, category ) => {
-  //   // console.log( outlet, category );
-  //
-  //   let feedObj;
-  //
-  //   userFeeds.forEach( item => {
-  //     // console.log(item.outlet_name);
-  //     if (item.outlet_name === outlet && item.label === category) {
-  //       console.log(item);
-  //       feedObj = item;
-  //     }
-  //
-  //   });
-  //
-  //   // console.log(feedObj);
-  //   //one component that renders all outlets
-  //   //generas
-  //
-  //   feedRenders = <FeedComponent feedData={ feedObj } />;
-  //
-  //
-  // } //componentRender;
-
-
-
-
-// <Grid userData={ user }/>
 
   return(
     <div className={'dashboard-container'}>
         <h1>Dashboard</h1>
 
         {
-          userFeeds
+          props.userFeedData
           ?
-          user.preferences.map( p => {
-              return (
-                <div>
-                <div key={p.outlet_name}>{p.outlet_name}</div>
-                {
-                  p.categories.map( c => {
-                    return(
-                      <div>
-                        <div onClick={ () => onFeedItemClick( p.outlet_name,  c.category_name) } key={ c.category_name }>{c.category_name}</div>
-                      </div>
-
-                    )
-                  })
-                }
-
-                </div>
-              )
-            })
-
+          <div className={ styles.feedRender }>
+            {
+             props.userFeedData.filter( f => f.visible ).map( f => (
+               <FeedComponent feedData={ f }/>
+             ))
+           }
+          </div>
           :
-          <div>no feeds</div>
+          <div>loading...</div>
         }
 
-        {
-        <div className={ styles.feedRender }>
-          {
-           userFeeds.filter( f => f.visible ).map( f => (
-             // <p>{f.label} ({f.outlet_name})</p>
-             <FeedComponent feedData={ f }/>
-           ))
-         }
-        </div>
-        }
 
     </div>
   )
@@ -164,6 +37,25 @@ const Dashboard = () => {
 
 export default Dashboard;
 
+
+// user.preferences.map( p => {
+//     return (
+//       <div>
+//       <div key={p.outlet_name}>{p.outlet_name}</div>
+//       {
+//         p.categories.map( c => {
+//           return(
+//             <div>
+//               <div onClick={ () => onFeedItemClick( p.outlet_name,  c.category_name) } key={ c.category_name }>{c.category_name}</div>
+//             </div>
+//
+//           )
+//         })
+//       }
+//
+//       </div>
+//     )
+//   })
 
 // {
 //   !loaded ? (<Loading loadState={ loaded }/>)
@@ -195,6 +87,9 @@ export default Dashboard;
 //   },
 // ]
 // }
+
+
+//beautiful drag thing
 
 // import { DragDropContext } from 'react-beautiful-dnd';
 // import Column from './Column'
