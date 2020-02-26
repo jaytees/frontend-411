@@ -1,0 +1,106 @@
+
+
+.container {
+  position: relative;
+  border: 1px solid black;
+  margin: 1em;
+  padding: 1em;
+  width: 26vw;
+  height: 26vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 20%;
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.articleContainer {
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.articleItem {
+  border-bottom: 1px solid grey;
+  /* width: 100%; */
+  /* height: 60%; */
+  left: 0;
+  top: 0;
+  margin-top: 2px;
+  margin-bottom: 2px;
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.thumbnailAndtitle {
+  /* border: 1px solid red; */
+  height: 10em;
+  display: inline-block;
+  /* align-content: space-between;
+  flex-direction: row; */
+
+  display: flex;
+}
+
+.articleTitle {
+  /* border: 1px solid black; */
+  text-align: left;
+  padding: 1em;
+}
+
+.articleImage {
+  /* height: 10em; */
+  width: 10em;
+  border: 1px solid black;
+  background-size: contain;
+}
+
+.articleContent {
+  /* border: 1px solid yellow; */
+  height: 40%;
+  text-align: left;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.articleFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+
+.articleLink {
+  /* border: 1px solid green; */
+  height: 10%;
+  padding-left: 0.5em;
+}
+
+.articleCategory {
+  /* border: 1px solid red; */
+  height: 10%;
+  width: 48%;
+  text-align: right;
+  padding-right: 0.5em;
+
+}
+
+@media screen and (max-width: 380px) {
+  .container{
+    background-color: red;
+    width: 67vw;
+    height: 67vh;
+  }
+}

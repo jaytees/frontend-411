@@ -14,27 +14,27 @@
     /* transition-duration: 300ms; bg */
 }
 
-.time {
+#time {
   background-image: url('../assets/time-magazine-vector.jpg');
   background-size: contain;
 }
 
-.ny-times {
+#New-York-Times {
   background-image: url('../assets/new-york-times-logo.jpg');
   background-size: contain;
 }
 
-.hs {
+#High-Snobiety {
   background-image: url('../assets/highsnobiety.png');
   background-size: contain;
 }
 
-.slam-city {
+#Slam-City-Skates {
   background-image: url('../assets/slam-city.png');
   background-size: contain;
 }
 
-.pandp {
+#Pigeons-and-Planes {
   background-image: url('../assets/pandp-logo.jpg');
   background-size: contain;
 }

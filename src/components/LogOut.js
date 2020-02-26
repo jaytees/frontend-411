@@ -16,7 +16,7 @@ const LogOut = () => {
   }
 
   return(
-    <button onClick={logOutSubmit} id="logOut-link">Log Out</button>
+    <button onClick={logOutSubmit}>Log Out</button>
   )
 
 }

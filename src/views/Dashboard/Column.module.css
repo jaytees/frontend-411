@@ -1,0 +1,13 @@
+.container {
+  margin: 2em;
+  border: 0.5em solid lightgrey;
+  border-radius: 2px;
+}
+
+.title {
+  padding: 2em;
+}
+
+.feed {
+  padding: 2em;
+}

@@ -1,0 +1,25 @@
+.Navbar {
+  height: 100vh;
+  width: 5vw;
+  background-color: grey;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 2em;
+  transition: 0.5s;
+}
+
+.Navbar .closebtn {
+  position: absolute;
+  top: 0;
+  margin-left: 3em;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 1em;}
+  /* .sidenav a {font-size: 18px;} */
+}

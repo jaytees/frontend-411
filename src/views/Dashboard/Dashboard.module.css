@@ -1,0 +1,9 @@
+
+.feedRender {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 380px) {
+  .feedRender {flex-direction: column;}
+}

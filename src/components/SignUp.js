@@ -29,12 +29,12 @@ function SignUp( props ){
 
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = ( event ) => {
     event.preventDefault();
 
 
     let url = '';
-    if (process.env.NODE_ENV !== 'production') {
+    if ( process.env.NODE_ENV !== 'production' ) {
       url = 'http://localhost:5000';
     }
 
@@ -48,7 +48,7 @@ function SignUp( props ){
     .then( res => {
       // console.log('post', res);
 
-      if(res.data.token){
+      if( res.data.token ){
 
         localStorage.setItem('x-auth-header', res.data.token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.jwt}`;
