@@ -1,0 +1,4 @@
+.outletsContainer {
+  display: flex;
+  flex-direction: row;
+}

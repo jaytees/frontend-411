@@ -10,7 +10,9 @@ const FeedComponent = ( props ) => {
 
     useEffect( () => {
       //set articles to empty for re-render
-      setArticles([]);
+      if (articles.length !== 0) {
+        setArticles([]);
+      }
 
       let url = '';
     if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +21,7 @@ const FeedComponent = ( props ) => {
 
     axios.get(url)
       .then( res => {
-        console.log(res);
+        // console.log(res);
 
         setArticles(res.data)
 

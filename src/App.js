@@ -11,20 +11,23 @@ import LogOut from './components/LogOut'
 
 import Dashboard from './views/Dashboard/Dashboard';
 import Setup from './views/Setup';
+import Profile from './views/Profile/Profile';
 
 
 function App() {
-  const [open, setOpen] = useState(false)
   const [user, setUser] = useState({ username: '',
             email: '',
             preferences: [] });
   const [userFeeds, setUserFeeds] = useState([]);
+
+  const [open, setOpen] = useState(false)
   const history = useHistory();
 
 
   const navControl = () => {
     open ? setOpen( false ) : setOpen(true)
   }
+
 
   useEffect( () => {
 
@@ -87,6 +90,16 @@ function App() {
   };
 
 
+  const submitNewPreferences = ( outlet, updates ) => {
+    console.log('from submit new', updates );
+
+    const userOutlet = user.preferences.find( o => o.outlet_name === outlet);
+    console.log( userOutlet );
+
+    const categoriesCopy = [...userOutlet.categories, ...updates];
+    console.log( categoriesCopy );
+
+  }
 
 
   return (
@@ -101,7 +114,13 @@ function App() {
               <Route exact path='/signup' component={ SignUp }/>
               <Route exact path='/login' component={ Login }/>
 
+
+
               <Route exact path='/profile/setup' component={ Setup }/>
+              <Route exact path='/profile' render={( props ) =>
+              ( <Profile {...props} handleNewPreferences={ submitNewPreferences }/> )}
+            />
+
 
 
               <Route exact path='/dashboard'
