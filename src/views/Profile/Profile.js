@@ -32,7 +32,6 @@ const Profile = ( props ) => {
 
     axios.get(`${url}/outlet/index`)
       .then( res => {
-        console.log('results', res.data);
 
         setOutlets(res.data)
 
@@ -40,27 +39,6 @@ const Profile = ( props ) => {
       .catch( err => console.warn( err ))
 
   }, [])
-
-
-  const handleSubmit = ( outlet, selections ) => {
-      console.log('handleSubmit', outlet, selections);
-
-    const outletMatch = outlets.find( o => o.outlet_name === outlet);
-    console.log(outletMatch);
-
-    let categoryMatch = [];
-
-    for (let i = 0; i < selections.length; i++) {
-
-      categoryMatch.push(outletMatch.categories.find( c => c.category_name === selections[i] ))
-
-    };
-
-    console.log( categoryMatch );  //works
-
-    props.handleNewPreferences( outlet, categoryMatch )
-
-  } //handleSubmit
 
 
   return(
@@ -74,7 +52,7 @@ const Profile = ( props ) => {
           {
             outlets.map( outlet => {
               return (
-                <OutletViewer outletInfo={ outlet } submitSelections={ handleSubmit }/>
+                <OutletViewer outletInfo={ outlet } handleSelection={ props.handleSelection }/>
               )
             })
           }
@@ -92,3 +70,24 @@ export default Profile;
 
 // when i was passing the selections back to profile
 // <OutletViewer outletInfo={ outlet } submitSelections={ handleSubmit }/>
+
+
+// const handleSubmit = ( outlet, selections ) => {
+//     console.log('handleSubmit', outlet, selections);
+//
+//   const outletMatch = outlets.find( o => o.outlet_name === outlet);
+//   console.log(outletMatch);
+//
+//   let categoryMatch = [];
+//
+//   for (let i = 0; i < selections.length; i++) {
+//
+//     categoryMatch.push(outletMatch.categories.find( c => c.category_name === selections[i] ))
+//
+//   };
+//
+//   console.log( categoryMatch );  //works
+//
+//   props.handleNewPreferences( outlet, categoryMatch )
+//
+// } //handleSubmit

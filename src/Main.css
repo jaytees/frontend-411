@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -27,7 +28,11 @@ button {
 .main {
   transition: margin-left .5s;
   height:  100vh;
-  width: 95vw;
+  width: 90vw;
   top: 0;
   right: 0;
+}
+
+.mainLogo {
+  height: 150px;
 }

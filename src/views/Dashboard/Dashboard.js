@@ -11,13 +11,14 @@ import FeedComponent from '../../components/Outlets/FeedComponent'
 
 const Dashboard = ( props ) => {
 
+  props.handleStatus( true );
 
   return(
-    <div className={'dashboard-container'}>
+    <div className={ styles.dashboardContainer }>
         <h1>Dashboard</h1>
 
         {
-          props.userFeedData
+          props.userFeedData.length > 0
           ?
           <div className={ styles.feedRender }>
             {

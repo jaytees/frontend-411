@@ -35,11 +35,18 @@ const FeedComponent = ( props ) => {
     // const [loading, setLoading] = useState(false)
     // const [loaded, setLoaded] = useState(false)
 
+    let outletID = props.feedData.outlet_name.split(' ').join('-');
+
+
+
   return(
     <div className={ styles.container } id={props.feedData.outlet_name}>
       <div className={styles.header}>
-        <h2>{props.feedData.outlet_name}</h2>
-        <p>{props.feedData.label}</p>
+        <img src={require(`../../assets/${outletID}.png`)} alt={props.feedData.outlet_name} className={ styles.circle }></img>
+        <div className={ styles.headerText }>
+          <h2>{props.feedData.outlet_name}</h2>
+          <p>{props.feedData.label}</p>
+        </div>
       </div>
 
       {
@@ -75,21 +82,3 @@ const FeedComponent = ( props ) => {
 }
 
 export default FeedComponent;
-
-
-// <div className={ styles.articleItem }>
-//   <div className={ styles.thumbnail }></div>
-//   <div className={ styles.articleContent}></div>
-//   <a className={ styles.articleLink }href='#'></a>
-//   <p className={ styles.articleCategory }></p>
-// </div>
-
-// <div className={ styles.articleItem }>
-// <div className={ styles.thumbnailAndtitle }>
-//   <img className={ styles.articleImage } src={ article.image } alt={ article.title }/>
-//   <h4 className={ styles.articleTitle }>{ article.title }</h4>
-// </div>
-// <div className={ styles.articleContent}>{ article.content }</div>
-// <a className={ styles.articleLink }href='#'>{ article.link }</a>
-// <p className={ styles.articleCategory }>{ article.category }</p>
-// </div>

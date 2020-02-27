@@ -9,6 +9,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import LogOut from './components/LogOut'
 
+import Home from './views/Home'
 import Dashboard from './views/Dashboard/Dashboard';
 import Setup from './views/Setup';
 import Profile from './views/Profile/Profile';
@@ -19,11 +20,12 @@ function App() {
             email: '',
             preferences: [] });
   const [userFeeds, setUserFeeds] = useState([]);
-
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [userStatus, setUserStatus] = useState(false);
   const history = useHistory();
 
 
+  //toggleNav
   const navControl = () => {
     open ? setOpen( false ) : setOpen(true)
   }
@@ -37,61 +39,96 @@ function App() {
 
       axios.defaults.headers.common['x-auth-header'] = token ;
 
-    } else {
-
-      history.push('/login');
-    }
-
       let url = '';
     if (process.env.NODE_ENV !== 'production') {
       url = 'http://localhost:5000';
     }
 
+      //move this back out on re-factor
+      axios.get(`${url}/user2/dashboard`)
+      .then(res => {
 
-    axios.get(`${url}/user2/dashboard`)
-    .then(res => {
+        // console.log('from app ajax', res.data)
 
-      console.log(res)
+        const user = {
+            username: res.data.username,
+            email: res.data.email,
+            preferences: res.data.preferences
+        }
 
-      const user = {
-          username: res.data.username,
-          email: res.data.email,
-          preferences: res.data.preferences
-      }
-      //
-      const feeds = [];
-
-      Object.keys(res.data.preferences).forEach( outlet => {
-        console.log(outlet); // key
-        console.log(res.data.preferences[outlet]); // value
-
-        let outlet_name = outlet;
-        let categories = res.data.preferences[outlet]
-
-        Object.keys(categories).forEach( category => {
-
-            feeds.push({
-                  label: category, 
-                  outlet_name,
-                  endpoint: categories[category],
-                  visible: true
-                });
+        parseFeedData( res.data.preferences )
 
 
-        console.log(feeds);
+        setUser( user )
+
+      })
+      .catch( err => console.warn(err))
+
+    } else {
+
+      history.push('/login');
+    }
+
+
+
+  }, [ userStatus ] ) //useEffect
+
+
+  //flag to rerender
+  const handleUserStatus = ( status ) => {
+    console.log('from handle status', status);
+    //need to clear previous user details
+
+    //refactor so it changes on value of userStatus
+    if ( status ) {
+      setUserStatus( status );
+    } else {
+      console.log('inside the else', status);
+      setUserStatus( status );
+      setUser({ username: '',
+                email: '',
+                preferences: [] })
+      setUserFeeds([]);
+    }
+
+  }
+
+
+
+  //converts full preference data into the dashboard render version
+  //expects preference object
+  const parseFeedData = ( preferenceData ) => {
+
+    // console.log('parse feed data argument' ,preferenceData);
+
+        const feeds = [];
+
+        Object.keys(preferenceData).forEach( outlet => {
+          // console.log(outlet); // key
+          // console.log(preferenceData[outlet]); // value
+
+          let outlet_name = outlet;
+          let categories = preferenceData[outlet]
+
+          Object.keys(categories).forEach( category => {
+
+              feeds.push({
+                    label: category, 
+                    outlet_name,
+                    endpoint: categories[category],
+                    visible: true
+                  });
+          });
         });
-      });
 
 
-      setUserFeeds( feeds )
-      setUser( user )
+        setUserFeeds( feeds )
 
-    })
-    .catch( err => console.warn(err))
-
-  }, [] ) //useEffect
+        // console.log('user feed state', feeds);
+  }; //parse feed data
 
 
+  //toggles visiblility of divs
   const onFeedItemClick = (outlet, category) => {
     const itemIndex = userFeeds.findIndex( f => f.outlet_name === outlet && f.label === category );
 
@@ -102,44 +139,48 @@ function App() {
   };
 
 
-  const submitNewPreferences = ( outlet, updates ) => {
-    console.log('from submit new', updates );
+  //updates preferences from profile
+  const preferenceUpdate = ( updates ) => {
+    // console.log('from preference update', updates)
 
-    const userOutlet = user.preferences.find( o => o.outlet_name === outlet);
-    console.log( userOutlet );
-
-    const updatedCategoriesCopy = [...userOutlet.categories, ...updates];
-    console.log( updatedCategoriesCopy );
-
-
+    parseFeedData( updates.preferences );
+    setUser( updates );
 
   }
 
 
+
   return (
-    <div className="App" style={ open ? { backgroundColor: 'rgba(0,0,0,0.1)'} : { backgroundColor: 'white' }}>
-
-      <Navbar navOpen={ navControl } openState={ open } userData={ user } feedSelectionHandler={ onFeedItemClick }/>
+    <div className="App">
 
 
-        <div className="main" style={ open ? { marginLeft: '20vw' } : {marginLeft: '5vw'} }>
+
+      <Navbar navOpen={ navControl } openState={ open } userData={ user } feedSelectionHandler={ onFeedItemClick } handleStatus={ handleUserStatus }/>
+
+
+        <div className="main" style={ open ? { marginLeft: '20vw' } : {marginLeft: '8vw'} }>
+
+        <img className="mainLogo" src={require(`./assets/slug.png`)} alt="logo"/>
 
           <Switch>
+              <Route exact path='/' component={ Home }/>
               <Route exact path='/signup' component={ SignUp }/>
-              <Route exact path='/login' component={ Login }/>
-
-
-
-              <Route exact path='/profile/setup' component={ Setup }/>
-              <Route exact path='/profile' render={( props ) =>
-              ( <Profile {...props} handleNewPreferences={ submitNewPreferences }/> )}
+              <Route exact path='/login' render={( props ) =>
+              (<Login {...props} handleStatus={ handleUserStatus } userFeedData={ userFeeds }/> )}
             />
+
+
+
+              <Route exact path='/profile/setup' render={( props ) =>
+              (<Setup {...props} handleStatus={ handleUserStatus }/> )} />
+              <Route exact path='/profile' render={( props ) =>
+              (<Profile {...props} handleSelection={ preferenceUpdate }/> )} />
 
 
 
               <Route exact path='/dashboard'
                 render={( props ) =>
-                ( <Dashboard {...props} userFeedData={ userFeeds }/> )}
+                (<Dashboard {...props} handleStatus={ handleUserStatus } userFeedData={ userFeeds }/> )}
               />
 
           </Switch>

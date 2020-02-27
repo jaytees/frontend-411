@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
-function SignUp( props ){
+const SignUp = ( props ) => {
   const [user, setUser] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
@@ -16,12 +16,12 @@ function SignUp( props ){
   const [errors, setErrors] = useState([]);
 
 
-  const handleChange = (event) => {
+    const handleChange = (event) => {
 
-    const key = event.target.name;
-    const newValue = event.target.value;
+        const key = event.target.name;
+        const newValue = event.target.value;
 
-    setUser({[key]: newValue});
+        setUser({[key]: newValue});
 
 
     }
@@ -46,7 +46,7 @@ function SignUp( props ){
       }
     })
     .then( res => {
-      // console.log('post', res);
+      console.log('post', res);
 
       if( res.data.token ){
 

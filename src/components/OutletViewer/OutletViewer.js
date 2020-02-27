@@ -5,7 +5,6 @@ import styles from './OutletViewer.module.css'
 
 const OutletViewer = ( props ) => {
 
-  // let selections = []
 
   const handleCategorySelect = ( action, category_name, category_url ) => {
     console.log('handleCategorySelect', action, category_name);
@@ -17,7 +16,7 @@ const OutletViewer = ( props ) => {
       action,
     }
 
-    console.log(selections);
+    // console.log(selections);
 
       //ajax post
       let url;
@@ -30,20 +29,27 @@ const OutletViewer = ( props ) => {
           selections
       })
         .then( res => {
-          console.log('res from post', res);
+          console.log('res from post', res.data);
+
+          props.handleSelection( res.data )
         })
         .catch( err => console.warn( err ))
 
 
-  }
+  } //handleCategorySelect
 
 
 
-
+  let outletID = props.outletInfo.outlet_name.split(' ').join('-');
 
   return(
     <div className={ styles.container } key={ props.outletInfo.outlet_name}>
-      <div className={ styles.header }>{ props.outletInfo.outlet_name }</div>
+      <div className={ styles.header }>
+        <img src={require(`../../assets/${outletID}.png`)} id={ styles.outletID } className={ styles.circle }></img>
+          <div className={ styles.headerText }>
+            <h2>{ props.outletInfo.outlet_name }</h2>
+          </div>
+      </div>
       <div className={ styles.categoryContainer }>
       <div className={ styles.categoriesTitle }>
           <h2>Available Categories</h2>
@@ -53,8 +59,10 @@ const OutletViewer = ( props ) => {
             return (
               <div className={ styles.categoryType }>
                 <h4 className={ styles.categoryTitle}>{ c.category_name }</h4>
-                <button className={ styles.categorySelect } onClick={ () => handleCategorySelect( 'add', c.category_name, c.category_url ) }>Add</button>
-                <button className={ styles.categorySelect } onClick={ () => handleCategorySelect( 'remove', c.category_name, c.category_url ) }>Remove</button>
+                <div className={styles.buttons}>
+                    <div className={ styles.btn } onClick={ () => handleCategorySelect( 'add', c.category_name, c.category_url ) }>Add</div>
+                    <div className={ styles.btn } onClick={ () => handleCategorySelect( 'remove', c.category_name, c.category_url ) }>Remove</div>
+                </div>
               </div>
             )
           })

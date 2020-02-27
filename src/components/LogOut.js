@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 
-const LogOut = () => {
+const LogOut = ( props ) => {
   let history = useHistory()
 
   const logOutSubmit = () =>{
@@ -10,8 +10,9 @@ const LogOut = () => {
     localStorage.removeItem('x-auth-header');
     delete axios.defaults.headers.common['Authorization'];
     // props.logOutMessage( false, 'Please login or sign up' );
+    props.passHandleStatus( false );
 
-    history.push('/signup')
+    history.push('/')
 
   }
 

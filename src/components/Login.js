@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
-const Login = () => {
+const Login = ( props ) => {
   const [user, setUser] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
@@ -21,8 +21,12 @@ const Login = () => {
     setUser({[key]: newValue})
   }
 
+
   const handleSubmit = (event) => {
       event.preventDefault();
+
+
+      console.log('handleSubmit', event);
 
       let url = '';
     if (process.env.NODE_ENV !== 'production') {
@@ -30,7 +34,7 @@ const Login = () => {
     }
 
     // console.log('url', url);
-      axios.post( `${url}/user/login`, {
+      axios.post( `${url}/user2/login`, {
         user,
         headers: {
          'Accept': 'application/json',
@@ -38,17 +42,19 @@ const Login = () => {
         }
       })
       .then( res => {
-        // console.log( res );
+        // console.log( res )
         if (res.data.token) {
+
+
 
           localStorage.setItem('x-auth-header', res.data.token);
           // localStorage.setItem('userId', res.data.user.id);
           axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
           // props.loginMessage( true, res.data.user.name )
-
           history.push('/dashboard');
 
-          // console.log('success', res);
+
+
 
         } else {
 
@@ -73,6 +79,7 @@ const Login = () => {
 
   return(
     <div className="Login">
+      <h2 className="formTitle">Login</h2>
 
         <form onSubmit={handleSubmit}>
             <div className="field">

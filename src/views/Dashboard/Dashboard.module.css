@@ -1,7 +1,11 @@
+.dashboardContainer{
+  
+}
 
 .feedRender {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 380px) {

@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import './Setup.css';
 
-const Setup = () => {
+const Setup = ( props ) => {
   const history = useHistory()
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState([]);
   const [outlets, setOutlets] = useState([]);
   const [userPreferences, setUserPreferences] = useState({})
 
@@ -26,7 +26,7 @@ const Setup = () => {
 
     axios.get(`${url}/outlet/index`)
       .then( res => {
-        // console.log(res.data);
+        console.log(res.data);
 
         const results = res.data;
 
@@ -35,6 +35,7 @@ const Setup = () => {
           let outletObject = {
               outlet_name: result.outlet_name,
               outlet_route: result.outlet_route,
+              thumbnail: result.thumbnail,
               categories: result.categories[0]
           }
 
@@ -50,10 +51,11 @@ const Setup = () => {
   const handleClick = ( clickedIcon ) => {
     console.log('click', clickedIcon)
 
+    //push outlet name onto the array
+    //toggle border color
+
     // const key = 'outlet_name';
     const value = clickedIcon.split('-').join(' ');
-
-
 
     outlets.forEach( item => {
           // console.log(item);
@@ -73,9 +75,6 @@ const Setup = () => {
 
 
 
-
-
-
   const handleSubmit = ( event ) => {
     event.preventDefault();
 
@@ -92,12 +91,15 @@ const Setup = () => {
       userPreferences
     })
     .then( res => {
-      console.log(res);
+      console.log('from then setup ',res);
+
+      props.handleStatus( true );
 
       history.push('/dashboard');
     })
-    .catch( err => console.log(err))
+    .catch( err => console.log('from catch setup', err))
   }
+
 
 
 
@@ -108,21 +110,24 @@ const Setup = () => {
     outletContent = <div>Loading outlet content...</div>
 
   } else {
-      // console.log(outlets);
 
-      outletContent = <div>
+
+      outletContent = <div className="icons">
             {
               outlets.map( ( outlet ) => {
-                // console.log(outlet);
+
 
                 let outlet_name = outlet.outlet_name.split(' ').join('-');
 
-                return <div onClick={ () => handleClick( outlet_name ) } className="circle animation" id={outlet_name}></div>
+                return (
+
+                    <img src={ outlet.thumbnail } onClick={ () => handleClick( outlet_name ) } id={outlet_name} className="circle animation"></img>
+
+                )
 
               })
 
             }
-              <button onClick={handleSubmit}>Update preferences</button>
           </div>
 
   } //content if
@@ -136,7 +141,7 @@ const Setup = () => {
 
         { outletContent }
 
-
+        <div className="btn" onClick={handleSubmit}>Done</div>
     </div>
   )
 }

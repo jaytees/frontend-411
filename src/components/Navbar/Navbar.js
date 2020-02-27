@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import LogOut from '../LogOut.js'
+import LogOut from '../LogOut'
+import Login from '../Login'
 import { Link } from 'react-router-dom'
 
 import styles from './Navbar.module.css'
@@ -7,47 +8,54 @@ import '../../Main.css'
 
 const Navbar = (props) => {
 
-  // console.log(props.userData)
 
 
   return(
       <div className={ styles.Navbar } style={ props.openState ? { width: '20vw' } : {width: '5vw'} }>
-
-        <button onClick={ props.navOpen }>Nav</button>
-        <Link to='/profile'><button>Profile</button></Link>
-        <Link to='/dashboard'><button>Dashboard</button></Link>
+        <div className={styles.logoContainer}>
+          <img className={ styles.icon } src={require('../../assets/slug-icon.png')}></img>
+        </div>
+        <div className={ styles.menuIconWrapper }>
+          <div className={ styles.menuIcon} onClick={ props.navOpen }></div>
+        </div>
 
           {
-            props.userData
-            ?
-
-
-            Object.keys(props.userData.preferences).map( outlet => {
-                  console.log(outlet);
+          (localStorage.getItem('x-auth-header') !== null)
+          ?
+          <div>
+            <Link to='/profile' ><button>Profile</button></Link>
+            <Link to='/dashboard'><button>Dashboard</button></Link>
+            <LogOut passHandleStatus={ props.handleStatus }/>
+            {
+              Object.keys(props.userData.preferences).map( outlet => {
                 return (
-                  <div>
+                  <ul>
 
-                  <div key={outlet}>{outlet}</div>
+                    <li className={ styles.outletName }key={outlet}>{outlet}</li>
                     {
                       Object.keys(props.userData.preferences[outlet]).map( category => {
-                          console.log(category);
-                        return(
-                          <div>
-                            <div onClick={ () => props.feedSelectionHandler( outlet,  category) } key={ category  }>{category }</div>
-                          </div>
 
+                        return(
+                          <ul>
+                            <li className={ styles.category }onClick={ () => props.feedSelectionHandler( outlet,  category) } key={ category  }>{category }</li>
+                          </ul>
                         )
                       })
                     }
-                  </div>
+                  </ul>
                 )
               })
-
+            }
+            </div>
             :
-            <div>Loading...</div>
+            <div>
+              <Link to='/login'><button>Login</button></Link>
+              <Link to='/signup'><button>Sign Up</button></Link>
+            </div>
           }
 
-        <LogOut />
+
+
       </div>
   )
 
