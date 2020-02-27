@@ -5,34 +5,39 @@ import styles from './OutletViewer.module.css'
 
 const OutletViewer = ( props ) => {
 
-  let selections = []
+  // let selections = []
 
-  const handleCategorySelect = ( category_name ) => {
-    // console.log('profilehandler', outlet_name, category_name);
+  const handleCategorySelect = ( action, category_name, category_url ) => {
+    console.log('handleCategorySelect', action, category_name);
 
-    selections.push( category_name )
+    let selections = {
+      outlet_name: props.outletInfo.outlet_name,
+      category_name,
+      category_url,
+      action,
+    }
 
     console.log(selections);
+
+      //ajax post
+      let url;
+      if ( process.env.NODE_ENV !== 'production') {
+        url = 'http://localhost:5000';
+      }
+
+
+      axios.post(`${url}/user2/outlets/update`,{
+          selections
+      })
+        .then( res => {
+          console.log('res from post', res);
+        })
+        .catch( err => console.warn( err ))
+
+
   }
 
-  // const handleSubmit = ( outlet, selections ) => {
-  //
-  //
-  //   let url;
-  //   if ( process.env.NODE_ENV !== 'production') {
-  //     url = 'http://localhost:5000';
-  //   }
-  //
-  //
-  //   axios.post(`${url}/user/outlets/update`,{
-  //
-  //   })
-  //     .then( res => {
-  //       console.log('res from post', res);
-  //     })
-  //     .catch( err => console.warn( err ))
-  //
-  // }
+
 
 
 
@@ -48,13 +53,14 @@ const OutletViewer = ( props ) => {
             return (
               <div className={ styles.categoryType }>
                 <h4 className={ styles.categoryTitle}>{ c.category_name }</h4>
-                <div className={ styles.categorySelect } onClick={ () => handleCategorySelect( c.category_name ) }></div>
+                <button className={ styles.categorySelect } onClick={ () => handleCategorySelect( 'add', c.category_name, c.category_url ) }>Add</button>
+                <button className={ styles.categorySelect } onClick={ () => handleCategorySelect( 'remove', c.category_name, c.category_url ) }>Remove</button>
               </div>
             )
           })
         }
       </div>
-        <button onClick={ () => props.submitSelections( props.outletInfo.outlet_name, selections ) }>Submit Subscriptions</button>
+
     </div>
   )
 };
@@ -66,3 +72,5 @@ export default OutletViewer
 
 
 // <button onClick={ () => handleSubmit( props.outletInfo.outlet_name, selections ) }>Submit Subscriptions</button>
+
+  // <button onClick={ () => props.submitSelections( props.outletInfo.outlet_name, selections ) }>Submit Subscriptions</button>

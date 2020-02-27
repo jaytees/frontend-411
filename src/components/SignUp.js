@@ -38,7 +38,7 @@ function SignUp( props ){
       url = 'http://localhost:5000';
     }
 
-    axios.post(`${url}/user/signup`, {
+    axios.post(`${url}/user2/signup`, {
       user,
       headers: {
         'Accept': 'application/json',

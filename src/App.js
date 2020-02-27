@@ -48,28 +48,40 @@ function App() {
     }
 
 
-    axios.get(`${url}/user/dashboard`)
+    axios.get(`${url}/user2/dashboard`)
     .then(res => {
+
+      console.log(res)
 
       const user = {
           username: res.data.username,
           email: res.data.email,
           preferences: res.data.preferences
       }
-
+      //
       const feeds = [];
-      res.data.preferences.forEach( pref => {
 
-        pref.categories.forEach( cat => {
-          feeds.push({
-            label: cat.category_name, 
-            outlet_name: pref.outlet_name,
-            endpoint: cat.category_url,
-            visible: true
-          });
-        }) // categories.forEach
+      Object.keys(res.data.preferences).forEach( outlet => {
+        console.log(outlet); // key
+        console.log(res.data.preferences[outlet]); // value
 
-      }); // preferences.forEach
+        let outlet_name = outlet;
+        let categories = res.data.preferences[outlet]
+
+        Object.keys(categories).forEach( category => {
+
+            feeds.push({
+                  label: category, 
+                  outlet_name,
+                  endpoint: categories[category],
+                  visible: true
+                });
+
+
+        console.log(feeds);
+        });
+      });
+
 
       setUserFeeds( feeds )
       setUser( user )
@@ -96,8 +108,10 @@ function App() {
     const userOutlet = user.preferences.find( o => o.outlet_name === outlet);
     console.log( userOutlet );
 
-    const categoriesCopy = [...userOutlet.categories, ...updates];
-    console.log( categoriesCopy );
+    const updatedCategoriesCopy = [...userOutlet.categories, ...updates];
+    console.log( updatedCategoriesCopy );
+
+
 
   }
 

@@ -8,7 +8,7 @@ const Setup = () => {
   const history = useHistory()
   const [selected, setSelected] = useState(false);
   const [outlets, setOutlets] = useState([]);
-  const [userPreferences, setUserPreferences] = useState([])
+  const [userPreferences, setUserPreferences] = useState({})
 
 
 
@@ -48,21 +48,32 @@ const Setup = () => {
 
 
   const handleClick = ( clickedIcon ) => {
-    // console.log('click', clickedIcon)
+    console.log('click', clickedIcon)
 
-    const key = 'outlet_name';
+    // const key = 'outlet_name';
     const value = clickedIcon.split('-').join(' ');
+
+
 
     outlets.forEach( item => {
           // console.log(item);
         if (item.outlet_name === value ) {
-            setUserPreferences(userPreferences => [...userPreferences, item])
-        }
-    });
 
-    // setSelected(true);
+            setUserPreferences({...userPreferences,
+                    [item.outlet_name]: {
+                      [item.categories.category_name]: item.categories.category_url
+                    }})
+                  }//if
+        }) //for each
 
-  } //handle click
+
+        console.log(userPreferences);
+
+      }; //handle click
+
+
+
+
 
 
   const handleSubmit = ( event ) => {
@@ -77,8 +88,8 @@ const Setup = () => {
 
     axios.defaults.headers.common['x-auth-header'] = token;
 
-    axios.post(`${url}/user/setup`, {
-      preferences: userPreferences
+    axios.post(`${url}/user2/setup`, {
+      userPreferences
     })
     .then( res => {
       console.log(res);
