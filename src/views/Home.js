@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import Login from '../components/Login';
@@ -19,24 +19,6 @@ const Home = () => {
       setForm('signup')
     }
   }
-
-  useEffect( () => {
-
-    // let url = '';
-    // if (process.env.NODE_ENV !== 'production') {
-    //   url = 'http://localhost:5000';
-    // } else {
-    //   url = 'https://slug-news.herokuapp.com';
-    //
-
-    axios.get('https://slug-news.herokuapp.com/user/index')
-      .then( res => {
-        console.log('useEffect');
-        console.log(res);
-      })
-      .catch( err => console.warn(err) )
-
-  }, [])
 
 
   return(
