@@ -24,7 +24,7 @@ const OutletViewer = ( props ) => {
       if ( process.env.NODE_ENV !== 'production') {
         url = 'http://localhost:5000';
       } else {
-        url = 'https://slug-news.herokuapp.com/';
+        url = 'https://slug-news.herokuapp.com';
       }
 
 
