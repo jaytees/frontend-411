@@ -27,11 +27,11 @@ const Home = () => {
     //   url = 'http://localhost:5000';
     // } else {
     //   url = 'https://slug-news.herokuapp.com';
-    // }
-
+    //
 
     axios.get('https://slug-news.herokuapp.com/user/all')
       .then( res => {
+        console.log('useEffect');
         console.log(res);
       })
       .catch( err => console.warn(err) )
