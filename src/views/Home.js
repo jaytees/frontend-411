@@ -29,7 +29,7 @@ const Home = () => {
     //   url = 'https://slug-news.herokuapp.com';
     //
 
-    axios.get('https://slug-news.herokuapp.com/user/all')
+    axios.get('https://slug-news.herokuapp.com/user/index')
       .then( res => {
         console.log('useEffect');
         console.log(res);
