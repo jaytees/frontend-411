@@ -52,8 +52,9 @@
 .categoriesTitle {
   /* border: 1px solid black; */
   width: 99%;
-  height: 15%;
+  /* height: 15%; */
   margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 .categoryType {

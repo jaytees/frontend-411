@@ -38,7 +38,7 @@ const SignUp = ( props ) => {
       url = 'http://localhost:5000';
     }
 
-    axios.post(`${url}/user2/signup`, {
+    axios.post(`${url}/user/signup`, {
       user,
       headers: {
         'Accept': 'application/json',

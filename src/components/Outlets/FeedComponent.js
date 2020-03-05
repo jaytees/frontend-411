@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading'
 const FeedComponent = ( props ) => {
     const [articles, setArticles] = useState([]);
 
-
+    //url from dashboard via props from top level
     useEffect( () => {
       //set articles to empty for re-render
       if (articles.length !== 0) {
@@ -31,9 +31,6 @@ const FeedComponent = ( props ) => {
 
     }, [props.feedData]) //useEffect
 
-
-    // const [loading, setLoading] = useState(false)
-    // const [loaded, setLoaded] = useState(false)
 
     let outletID = props.feedData.outlet_name.split(' ').join('-');
 

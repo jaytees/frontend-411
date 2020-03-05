@@ -45,7 +45,7 @@ function App() {
     }
 
       //move this back out on re-factor
-      axios.get(`${url}/user2/dashboard`)
+      axios.get(`${url}/user/dashboard`)
       .then(res => {
 
         // console.log('from app ajax', res.data)
@@ -66,7 +66,7 @@ function App() {
 
     } else {
 
-      history.push('/login');
+      history.push('/');
     }
 
 
@@ -128,7 +128,10 @@ function App() {
   }; //parse feed data
 
 
-  //toggles visiblility of divs
+
+
+  //toggles visiblility of feed display divs
+  //passed down to navbar//split state
   const onFeedItemClick = (outlet, category) => {
     const itemIndex = userFeeds.findIndex( f => f.outlet_name === outlet && f.label === category );
 

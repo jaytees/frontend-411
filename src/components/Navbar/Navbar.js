@@ -62,22 +62,3 @@ const Navbar = (props) => {
 }
 
 export default Navbar;
-
-
-// props.userData.preferences.map( p => {
-//     return (
-//       <div>
-//       <div key={p.outlet_name}>{p.outlet_name}</div>
-//       {
-//         p.categories.map( c => {
-//           return(
-//             <div>
-//               <div onClick={ () => props.feedSelectionHandler( p.outlet_name,  c.category_name) } key={ c.category_name }>{c.category_name}</div>
-//             </div>
-//
-//           )
-//         })
-//       }
-//       </div>
-//     )
-//   })

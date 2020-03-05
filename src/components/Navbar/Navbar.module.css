@@ -7,12 +7,12 @@
   top: 0;
   left: 0;
   overflow-x: hidden;
-  padding-top: 0.5em;
+  padding: 1.0em;
   transition: 0.5s;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 
   background-color: #e3e3e3;
   border-right: 2px solid #31a8e6;
@@ -59,6 +59,7 @@ ul {
 .menuIconWrapper {
   display: flex;
   justify-content: center;
+  padding: 2em 0 2em 0;
 }
 
 .menuIcon {

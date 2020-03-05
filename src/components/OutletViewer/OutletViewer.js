@@ -6,8 +6,9 @@ import styles from './OutletViewer.module.css'
 const OutletViewer = ( props ) => {
 
 
+  //makes post request to backend on every click and passes response to top level
   const handleCategorySelect = ( action, category_name, category_url ) => {
-    console.log('handleCategorySelect', action, category_name);
+    // console.log('handleCategorySelect', action, category_name);
 
     let selections = {
       outlet_name: props.outletInfo.outlet_name,
@@ -25,7 +26,7 @@ const OutletViewer = ( props ) => {
       }
 
 
-      axios.post(`${url}/user2/outlets/update`,{
+      axios.post(`${url}/user/outlets/update`,{
           selections
       })
         .then( res => {

@@ -87,7 +87,7 @@ const Setup = ( props ) => {
 
     axios.defaults.headers.common['x-auth-header'] = token;
 
-    axios.post(`${url}/user2/setup`, {
+    axios.post(`${url}/user/setup`, {
       userPreferences
     })
     .then( res => {
