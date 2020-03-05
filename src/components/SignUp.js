@@ -40,7 +40,8 @@ const SignUp = ( props ) => {
       url = 'https://slug-news.herokuapp.com';
     }
 
-    axios.post(`${url}user/signup`, {
+    console.log('url', url);
+    axios.post(`${url}/user/signup`, {
       user,
       headers: {
         'Accept': 'application/json',
