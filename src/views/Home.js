@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-import Login from '../components/Login'
-import SignUp from '../components/SignUp'
+import Login from '../components/Login';
+import SignUp from '../components/SignUp';
 
-import styles from './Home.module.css'
+import styles from './Home.module.css';
 
 const Home = () => {
   const [form, setForm] = useState('')
@@ -18,6 +19,24 @@ const Home = () => {
       setForm('signup')
     }
   }
+
+  useEffect( () => {
+
+    // let url = '';
+    // if (process.env.NODE_ENV !== 'production') {
+    //   url = 'http://localhost:5000';
+    // } else {
+    //   url = 'https://slug-news.herokuapp.com';
+    // }
+
+
+    axios.get('https://slug-news.herokuapp.com/user/all')
+      .then( res => {
+        console.log(res);
+      })
+      .catch( err => console.warn(err) )
+
+  }, [])
 
 
   return(

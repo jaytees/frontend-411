@@ -36,7 +36,7 @@ const Login = ( props ) => {
     }
 
     // console.log('url', url);
-      axios.post( `${url}user/login`, {
+      axios.post( `${url}/user/login`, {
         user,
         headers: {
          'Accept': 'application/json',
