@@ -22,6 +22,8 @@ const Setup = ( props ) => {
     let url = '';
     if ( process.env.NOSE_ENV !== 'production'){
       url = 'http://localhost:5000';
+    } else {
+      url = 'https://slug-news.herokuapp.com/';
     }
 
     axios.get(`${url}/outlet/index`)
@@ -81,7 +83,10 @@ const Setup = ( props ) => {
     let url = '';
     if ( process.env.NODE_ENV !== 'production' ) {
       url = 'http://localhost:5000';
-    };
+    } else {
+      url = 'https://slug-news.herokuapp.com/';
+    }
+
     const token = localStorage.getItem('x-auth-header');
     // console.log(token);
 
