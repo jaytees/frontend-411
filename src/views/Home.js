@@ -11,7 +11,6 @@ const Home = () => {
 
 
   const handleToggle = ( formID ) => {
-    console.log('toggle', formID);
 
     if (formID === 'login') {
       setForm('login')

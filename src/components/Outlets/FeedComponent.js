@@ -14,10 +14,9 @@ const FeedComponent = ( props ) => {
         setArticles([]);
       }
 
-      let url = '';
-    if (process.env.NODE_ENV !== 'production') {
-      url = props.feedData.endpoint
-    }
+
+    let url = `${process.env.REACT_APP_API}${props.feedData.endpoint}`;
+
 
     axios.get(url)
       .then( res => {

@@ -8,7 +8,6 @@ const OutletViewer = ( props ) => {
 
   //makes post request to backend on every click and passes response to top level
   const handleCategorySelect = ( action, category_name, category_url ) => {
-    // console.log('handleCategorySelect', action, category_name);
 
     let selections = {
       outlet_name: props.outletInfo.outlet_name,
@@ -20,13 +19,7 @@ const OutletViewer = ( props ) => {
     // console.log(selections);
 
       //ajax post
-      let url;
-      if ( process.env.NODE_ENV !== 'production') {
-        url = 'http://localhost:5000';
-      } else {
-        url = 'https://slug-news.herokuapp.com';
-      }
-
+      let url = process.env.REACT_APP_API;
 
       axios.post(`${url}/user/outlets/update`,{
           selections

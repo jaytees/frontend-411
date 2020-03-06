@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-// import Loading from './Loading'
 
 import Grid from './Grid'
 import styles from './Dashboard.module.css'

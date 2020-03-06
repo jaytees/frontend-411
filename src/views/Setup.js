@@ -19,16 +19,11 @@ const Setup = ( props ) => {
       history.push('/login');
     }
 
-    let url = '';
-    if ( process.env.NOSE_ENV !== 'production'){
-      url = 'http://localhost:5000';
-    } else {
-      url = 'https://slug-news.herokuapp.com';
-    }
+
+    let url = process.env.REACT_APP_API;
 
     axios.get(`${url}/outlet/index`)
       .then( res => {
-        console.log(res.data);
 
         const results = res.data;
 
@@ -51,7 +46,6 @@ const Setup = ( props ) => {
 
 
   const handleClick = ( clickedIcon ) => {
-    console.log('click', clickedIcon)
 
     //push outlet name onto the array
     //toggle border color
@@ -71,8 +65,6 @@ const Setup = ( props ) => {
         }) //for each
 
 
-        console.log(userPreferences);
-
       }; //handle click
 
 
@@ -80,12 +72,7 @@ const Setup = ( props ) => {
   const handleSubmit = ( event ) => {
     event.preventDefault();
 
-    let url = '';
-    if ( process.env.NODE_ENV !== 'production' ) {
-      url = 'http://localhost:5000';
-    } else {
-      url = 'https://slug-news.herokuapp.com';
-    }
+    let url = process.env.REACT_APP_API;
 
     const token = localStorage.getItem('x-auth-header');
     // console.log(token);
@@ -96,7 +83,6 @@ const Setup = ( props ) => {
       userPreferences
     })
     .then( res => {
-      console.log('from then setup ',res);
 
       props.handleStatus( true );
 

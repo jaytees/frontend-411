@@ -39,13 +39,7 @@ function App() {
 
       axios.defaults.headers.common['x-auth-header'] = token ;
 
-      let url = '';
-    if (process.env.NODE_ENV !== 'production') {
-      url = 'http://localhost:5000';
-    } else {
-      url = 'https://slug-news.herokuapp.com';
-    }
-
+      let url = process.env.REACT_APP_API;
 
       //move this back out on re-factor
       axios.get(`${url}/user/dashboard`)
@@ -79,7 +73,6 @@ function App() {
 
   //flag to rerender
   const handleUserStatus = ( status ) => {
-    console.log('from handle status', status);
     //need to clear previous user details
 
     //refactor so it changes on value of userStatus
@@ -102,13 +95,11 @@ function App() {
   //expects preference object
   const parseFeedData = ( preferenceData ) => {
 
-    // console.log('parse feed data argument' ,preferenceData);
 
         const feeds = [];
 
         Object.keys(preferenceData).forEach( outlet => {
-          // console.log(outlet); // key
-          // console.log(preferenceData[outlet]); // value
+
 
           let outlet_name = outlet;
           let categories = preferenceData[outlet]
@@ -127,7 +118,7 @@ function App() {
 
         setUserFeeds( feeds )
 
-        // console.log('user feed state', feeds);
+
   }; //parse feed data
 
 

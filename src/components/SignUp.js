@@ -27,19 +27,13 @@ const SignUp = ( props ) => {
     }
 
 
-  console.log(process.env.REACT_APP_API);
 
   const handleSubmit = ( event ) => {
     event.preventDefault();
 
 
     let url = process.env.REACT_APP_API;
-    // if ( process.env.NODE_ENV !== 'production' ) {
-    //   url = 'http://localhost:5000';
-    // } else {
-    //   url = 'https://slug-news.herokuapp.com';
-    // }
-
+    
     console.log('url', url);
     axios.post(`${url}/user/signup`, {
       user,

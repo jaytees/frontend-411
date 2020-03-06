@@ -28,13 +28,8 @@ const Login = ( props ) => {
 
       console.log('handleSubmit', event);
 
-      let url = '';
-    if (process.env.NODE_ENV !== 'production') {
-      url = 'http://localhost:5000';
-    } else {
-      url = 'https://slug-news.herokuapp.com';
-    }
-
+      let url = process.env.REACT_APP_API;
+      
     // console.log('url', url);
       axios.post( `${url}/user/login`, {
         user,
