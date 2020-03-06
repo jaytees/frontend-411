@@ -9,10 +9,10 @@ const Profile = ( props ) => {
   const [outlets, setOutlets] = useState([]);
   const history = useHistory();
 
-  useEffect( () => {
+  //check user is logged in
+  //refactor as used everytime
+  const checkUserStatus = () => {
 
-    //check user is authenticated
-    //refactor as used everytime
     const token = localStorage.getItem('x-auth-header');
     if (token){
 
@@ -23,17 +23,26 @@ const Profile = ( props ) => {
       history.push('/login');
     }
 
+  };
 
+  checkUserStatus();
+
+
+  useEffect( () => {
+    let mounted = true;
     let url = process.env.REACT_APP_API;
 
     axios.get(`${url}/outlet/index`)
       .then( res => {
 
-        setOutlets(res.data)
-
+        if (mounted) {
+          setOutlets(res.data)
+        }
+        
       })
       .catch( err => console.warn( err ))
 
+      return () => mounted = false;
   }, [])
 
 
@@ -48,7 +57,7 @@ const Profile = ( props ) => {
           {
             outlets.map( outlet => {
               return (
-                <OutletViewer outletInfo={ outlet } handleSelection={ props.handleSelection }/>
+                <OutletViewer outletInfo={ outlet } handleSelection={ props.handleSelection } key={ outlet.outlet_name }/>
               )
             })
           }

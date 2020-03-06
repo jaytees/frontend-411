@@ -9,25 +9,28 @@ const FeedComponent = ( props ) => {
 
     //url from dashboard via props from top level
     useEffect( () => {
+      let mounted = true;
+
       //set articles to empty for re-render
       if (articles.length !== 0) {
         setArticles([]);
       }
 
 
-    let url = `${process.env.REACT_APP_API}${props.feedData.endpoint}`;
+      let url = `${process.env.REACT_APP_API}${props.feedData.endpoint}`;
 
 
-    axios.get(url)
-      .then( res => {
-        // console.log(res);
+      axios.get(url)
+        .then( res => {
+          // console.log(res);
+          if (mounted) {
+            setArticles(res.data)
+          }
 
-        setArticles(res.data)
+        })
+        .catch( err => console.warn(err))
 
-      })
-      .catch( err => console.warn(err))
-
-
+        return () => mounted = false;
     }, [props.feedData]) //useEffect
 
 
@@ -50,11 +53,11 @@ const FeedComponent = ( props ) => {
         :
         <div className={ styles.articleContainer }>
         {
-          articles.map( article => {
+          articles.map( (article, i) => {
 
             return (
 
-              <div className={ styles.articleItem } key={ article.title}>
+              <div className={ styles.articleItem } key={ i }>
                 <div className={ styles.thumbnailAndtitle }>
                   <img className={ styles.articleImage } src={ article.image } alt={ article.title }/>
                   <h4 className={ styles.articleTitle }>{ article.title }</h4>
@@ -62,7 +65,7 @@ const FeedComponent = ( props ) => {
                 <div className={ styles.articleContent}>{ article.content }</div>
 
                 <div className={ styles.articleFooter }>
-                  <a className={ styles.articleLink }href={ article.link } target="_blank">Link to Full Article</a>
+                  <a className={ styles.articleLink }href={ article.link } target="_blank" rel="noopener noreferrer">Link to Full Article</a>
                   <p className={ styles.articleCategory }>{ article.category }</p>
                 </div>
 

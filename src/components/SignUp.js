@@ -33,8 +33,8 @@ const SignUp = ( props ) => {
 
 
     let url = process.env.REACT_APP_API;
-    
-    console.log('url', url);
+
+
     axios.post(`${url}/user/signup`, {
       user,
       headers: {
@@ -43,7 +43,7 @@ const SignUp = ( props ) => {
       }
     })
     .then( res => {
-      console.log('post', res);
+
 
       if( res.data.token ){
 

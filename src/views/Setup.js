@@ -1,4 +1,4 @@
-import React, {useState, useReducer, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -6,42 +6,47 @@ import './Setup.css';
 
 const Setup = ( props ) => {
   const history = useHistory()
-  const [selected, setSelected] = useState([]);
   const [outlets, setOutlets] = useState([]);
   const [userPreferences, setUserPreferences] = useState({})
 
-
-
-  useEffect( () => {
-
+  //ensure user is logged in
+  const checkUserStatus = () => {
     const token = localStorage.getItem('x-auth-header');
     if (!token) {
       history.push('/login');
     }
+  }
+
+  checkUserStatus()
 
 
+  useEffect( () => {
+    let mounted = true;
     let url = process.env.REACT_APP_API;
 
     axios.get(`${url}/outlet/index`)
       .then( res => {
 
-        const results = res.data;
+        if (mounted) {
+          const results = res.data;
 
-        results.map( (result) => {
+          results.forEach( (result) => {
 
-          let outletObject = {
-              outlet_name: result.outlet_name,
-              outlet_route: result.outlet_route,
-              thumbnail: result.thumbnail,
-              categories: result.categories[0]
-          }
+            let outletObject = {
+                outlet_name: result.outlet_name,
+                outlet_route: result.outlet_route,
+                thumbnail: result.thumbnail,
+                categories: result.categories[0]
+            }
 
-          setOutlets(outlets => [...outlets, outletObject])
+            setOutlets(outlets => [...outlets, outletObject])
 
-        })
+          }) //map
+        } //if
       })
       .catch( err => console.warn(err))
 
+      return () => mounted = false;
   }, [])
 
 
@@ -54,7 +59,7 @@ const Setup = ( props ) => {
     const value = clickedIcon.split('-').join(' ');
 
     outlets.forEach( item => {
-          // console.log(item);
+
         if (item.outlet_name === value ) {
 
             setUserPreferences({...userPreferences,
@@ -65,7 +70,7 @@ const Setup = ( props ) => {
         }) //for each
 
 
-      }; //handle click
+    }; //handle click
 
 
 
@@ -103,23 +108,23 @@ const Setup = ( props ) => {
   } else {
 
 
-      outletContent = <div className="icons">
-            {
-              outlets.map( ( outlet ) => {
+    outletContent = <div className="icons">
+          {
+            outlets.map( ( outlet ) => {
 
 
-                let outlet_name = outlet.outlet_name.split(' ').join('-');
+              let outlet_name = outlet.outlet_name.split(' ').join('-');
 
-                return (
+              return (
 
-                    <img src={ outlet.thumbnail } onClick={ () => handleClick( outlet_name ) } id={outlet_name} className="circle animation"></img>
+                  <img src={ outlet.thumbnail } onClick={ () => handleClick( outlet_name ) } id={outlet_name} className="circle animation" alt={ outlet.outlet_name } key={ outlet.outlet_name }></img>
 
-                )
+              )
 
-              })
+            })
 
-            }
-          </div>
+          }
+        </div>
 
   } //content if
 

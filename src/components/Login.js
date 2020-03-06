@@ -25,11 +25,8 @@ const Login = ( props ) => {
   const handleSubmit = (event) => {
       event.preventDefault();
 
-
-      console.log('handleSubmit', event);
-
       let url = process.env.REACT_APP_API;
-      
+
     // console.log('url', url);
       axios.post( `${url}/user/login`, {
         user,

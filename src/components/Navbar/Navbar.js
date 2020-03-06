@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import LogOut from '../LogOut'
-import Login from '../Login'
 import { Link } from 'react-router-dom'
 
 import styles from './Navbar.module.css'
@@ -13,7 +12,7 @@ const Navbar = (props) => {
   return(
       <div className={ styles.Navbar } style={ props.openState ? { width: '20vw' } : {width: '5vw'} }>
         <div className={styles.logoContainer}>
-          <img className={ styles.icon } src={require('../../assets/slug-icon.png')}></img>
+          <img className={ styles.icon } src={require('../../assets/slug-icon.png')} alt="slug logo"></img>
         </div>
         <div className={ styles.menuIconWrapper }>
           <div className={ styles.menuIcon} onClick={ props.navOpen }></div>
@@ -29,15 +28,15 @@ const Navbar = (props) => {
             {
               Object.keys(props.userData.preferences).map( outlet => {
                 return (
-                  <ul>
+                  <ul key={outlet}>
 
-                    <li className={ styles.outletName }key={outlet}>{outlet}</li>
+                    <li className={ styles.outletName }>{outlet}</li>
                     {
-                      Object.keys(props.userData.preferences[outlet]).map( category => {
+                      Object.keys(props.userData.preferences[outlet]).map( ( category, i ) => {
 
                         return(
-                          <ul>
-                            <li className={ styles.category }onClick={ () => props.feedSelectionHandler( outlet,  category) } key={ category  }>{category }</li>
+                          <ul  key={ category }>
+                            <li className={ styles.category }onClick={ () => props.feedSelectionHandler( outlet,  category) }>{category }</li>
                           </ul>
                         )
                       })

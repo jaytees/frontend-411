@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Link, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import './Main.css'
@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 
 import SignUp from './components/SignUp';
 import Login from './components/Login';
-import LogOut from './components/LogOut'
+
 
 import Home from './views/Home'
 import Dashboard from './views/Dashboard/Dashboard';
@@ -15,7 +15,7 @@ import Setup from './views/Setup';
 import Profile from './views/Profile/Profile';
 
 
-function App() {
+const App = () => {
   const [user, setUser] = useState({ username: '',
             email: '',
             preferences: [] });
@@ -45,8 +45,6 @@ function App() {
       axios.get(`${url}/user/dashboard`)
       .then(res => {
 
-        // console.log('from app ajax', res.data)
-
         const user = {
             username: res.data.username,
             email: res.data.email,
@@ -67,7 +65,6 @@ function App() {
     }
 
 
-
   }, [ userStatus ] ) //useEffect
 
 
@@ -79,7 +76,7 @@ function App() {
     if ( status ) {
       setUserStatus( status );
     } else {
-      console.log('inside the else', status);
+
       setUserStatus( status );
       setUser({ username: '',
                 email: '',

@@ -41,7 +41,7 @@ const OutletViewer = ( props ) => {
   return(
     <div className={ styles.container } key={ props.outletInfo.outlet_name}>
       <div className={ styles.header }>
-        <img src={require(`../../assets/${outletID}.png`)} id={ styles.outletID } className={ styles.circle }></img>
+        <img src={require(`../../assets/${outletID}.png`)} id={ styles.outletID } className={ styles.circle } alt={ props.outletInfo.outlet_name }></img>
           <div className={ styles.headerText }>
             <h2>{ props.outletInfo.outlet_name }</h2>
           </div>
@@ -51,9 +51,9 @@ const OutletViewer = ( props ) => {
           <h2>Available Categories</h2>
       </div>
         {
-          props.outletInfo.categories.map( c => {
+          props.outletInfo.categories.map( (c, i) => {
             return (
-              <div className={ styles.categoryType }>
+              <div className={ styles.categoryType } key={i}>
                 <h4 className={ styles.categoryTitle}>{ c.category_name }</h4>
                 <div className={styles.buttons}>
                     <div className={ styles.btn } onClick={ () => handleCategorySelect( 'add', c.category_name, c.category_url ) }>Add</div>

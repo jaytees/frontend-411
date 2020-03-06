@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
 
-import Grid from './Grid'
 import styles from './Dashboard.module.css'
 
 import FeedComponent from '../../components/Outlets/FeedComponent'
@@ -21,8 +18,9 @@ const Dashboard = ( props ) => {
           ?
           <div className={ styles.feedRender }>
             {
-             props.userFeedData.filter( f => f.visible ).map( f => (
-               <FeedComponent feedData={ f }/>
+             props.userFeedData.filter( f => f.visible ).map( (f, i) => (
+
+               <FeedComponent feedData={ f } key={ f.outlet_name }/>
              ))
            }
           </div>

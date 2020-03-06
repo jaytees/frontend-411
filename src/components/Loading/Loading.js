@@ -1,19 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import FadeIn from 'react-fade-in';
 import Lottie from 'react-lottie';
-import ReactLoading from 'react-loading';
+// import ReactLoading from 'react-loading';
 import * as scriptLoader from './16574-loading.json'
-import * as doneData from './433-checked-done.json'
+// import * as doneData from './433-checked-done.json'
 
-const defaultOptions2 = {
-   loop: false,
-   autoplay: true,
-   animationData: doneData.default,
-   rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-   }
-};
-
+// const defaultOptions2 = {
+//    loop: false,
+//    autoplay: true,
+//    animationData: doneData.default,
+//    rendererSettings: {
+//       preserveAspectRatio: "xMidYMid slice"
+//    }
+// };
 
 const defaultOptions = {
   loop: true,
@@ -23,7 +22,6 @@ const defaultOptions = {
     preserveAspectRatio: 'xMidYMid slice'
   }
 }
-
 
 
 const Loading = (props) => {
