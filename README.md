@@ -44,6 +44,17 @@ https://jaytees.github.io/frontend-slug/#/
 https://github.com/jaytees/backend-slug
 
 
+## Experience
+
+* I approached this project with a lot more consideration for the underlying architecture than any of my previous projects.
+* My goal was to deliver a project where the code looked as good as the design.
+* It was a necessary decision as this project was heavily reliant on data from a variety of sources, in different formats and how it was then consolidated to be rendered consistently.
+* It was a great challenge and I learnt a lot about parsing data from AJAX requests along the way. I also learnt that it is counter-productive to try and refactor code before you have even written it.
+
+* At the start of this project I had very little experience with Mongodb and Express. But I really wanted to push myself to learn another database structure and framework.
+* Learning Mongo and Express from the ground up while trying to deliver a project was stressful but a great experience and I learnt so much. It was like my first project again, every little bit of functionality was a massive win.
+
+
 ## Wins
 
 * How DRY I managed to make the rendering of the feed data. My aim was to have all outlets handled by one component. I achieved this through refactoring how the data was stored on the backend (noSql was a perfect choice for this reason). As well as, creating a function that parsed the user preference data, into a format specifically for the frontend. Although this added an extra step and an extra piece of state. It was more efficient than having to loop through multiple levels of the nested preferences object, multiple times.
@@ -88,17 +99,6 @@ https://github.com/jaytees/backend-slug
 * Profile View
 
 ![other users gardens image](./public/readme/profile-view.png)
-
-
-## Experience
-
-* I approached this project with a lot more consideration for the underlying architecture than any of my previous projects.
-* My goal was to deliver a project where the code looked as good as the design.
-* It was a necessary decision as this project was heavily reliant on data from a variety of sources, in different formats and how it was then consolidated to be rendered consistently.
-* It was a great challenge and I learnt a lot about parsing data from AJAX requests along the way. I also learnt that it is counter-productive to try and refactor code before you have even written it.
-
-* At the start of this project I had very little experience with Mongodb and Express. But I really wanted to push myself to learn another database structure and framework.
-* Learning Mongo and Express from the ground up while trying to deliver a project was stressful but a great experience and I learnt so much. It was like my first project again, every little bit of functionality was a massive win.
 
 
 ## Things to do
