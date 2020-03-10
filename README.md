@@ -75,19 +75,19 @@ https://github.com/jaytees/backend-slug
 
 * Landing Page
 
-![homepage image](./public/readme-images/landing-view.png)
+![homepage image](./public/readme/landing-view.png)
 
 * Profile Set-Up
 
-![profile page image](./public/readme-images/setup-view.png)
+![profile page image](./public/readme/setup-view.png)
 
 * Dashboard View
 
-![personal garden image](./public/readme-images/dashboard-view.png)
+![personal garden image](./public/readme/dashboard-view.png)
 
 * Profile View
 
-![other users gardens image](./public/readme-images/profile-view.png)
+![other users gardens image](./public/readme/profile-view.png)
 
 
 ## Experience
