@@ -16,8 +16,6 @@ const OutletViewer = ( props ) => {
       action,
     }
 
-    // console.log(selections);
-
       //ajax post
       let url = process.env.REACT_APP_API;
 
@@ -25,12 +23,10 @@ const OutletViewer = ( props ) => {
           selections
       })
         .then( res => {
-          console.log('res from post', res.data);
-
+          
           props.handleSelection( res.data )
         })
         .catch( err => console.warn( err ))
-
 
   } //handleCategorySelect
 

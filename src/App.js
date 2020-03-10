@@ -135,7 +135,6 @@ const App = () => {
 
   //updates preferences from profile
   const preferenceUpdate = ( updates ) => {
-    // console.log('from preference update', updates)
 
     parseFeedData( updates.preferences );
     setUser( updates );
