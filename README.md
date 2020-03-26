@@ -6,6 +6,8 @@ I'm sure you're familiar with news aggregation sites, this is no different. An a
 
 I always wanted an application that would make staying up to date with the blogs I follow easier. So with my new skills, I thought 'why not to build my own'.
 
+*In newspaper editing, a SLUG is a short name given to an article that is in production. The story is labeled with its slug as it makes its way from the reporter through the editorial process.*
+
 ## Features
 
 * Select news outlets to subscribe to
@@ -51,8 +53,8 @@ https://github.com/jaytees/backend-slug
 * It was a necessary decision as this project was heavily reliant on data from a variety of sources, in different formats and how it was then consolidated to be rendered consistently.
 * It was a great challenge and I learnt a lot about parsing data from AJAX requests along the way. I also learnt that it is counter-productive to try and refactor code before you have even written it.
 
-* At the start of this project I had very little experience with Mongodb and Express. But I really wanted to push myself to learn another database structure and framework.
-* Learning Mongo and Express from the ground up while trying to deliver a project was stressful but a great experience and I learnt so much. It was like my first project again, every little bit of functionality was a massive win.
+* At the start of this project I had very little experience with Mongodb and Express and having to learn this whilst delivering a project, slowed my progress but I wanted to push myself to learn a new db structure and framework and noSQL was the right choice for this project.
+* This added another layer of stress to the project but a great experience and I learnt so much. It was like my first project again, every little bit of functionality was a massive win.
 
 
 ## Wins
@@ -64,7 +66,7 @@ https://github.com/jaytees/backend-slug
 
 ## Challenges
 
-* Following on from above to get to that level of satisfaction, took a lot of thought, planning and refactoring. As I mentioned in the experience section of this README, I learnt a valuable lesson..."Don't try to refactor code you haven't written". What i mean by this is, I had a clear vision from the offset and knew there was a very clean way to execute this code but due to the volume of data I was handling, it was easy to get lost in how it was being passed around the application, before even attempting it.
+* Following on from above to get to that level of satisfaction, took a lot of thought, planning and refactoring. As I mentioned in the experience section of this README, I learned a valuable lesson..."Don't try to refactor code you haven't written". What i mean by this is, I had a clear vision from the offset and knew there was a very clean way to execute this code but due to the volume of data I was handling, it was easy to get lost in how it was being passed around the application, before even attempting it.
 
 ## Code
 
@@ -100,6 +102,9 @@ https://github.com/jaytees/backend-slug
 
 ![other users gardens image](./public/readme/profile-view.png)
 
+## Next step
+
+* I really want to refactor the backend, so all API request are handled by one single endpoint
 
 ## Things to do
 
