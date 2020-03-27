@@ -75,6 +75,7 @@ const Login = props => {
             type="text"
             name="username"
             placeholder="username"
+            required
           />
         </div>
         <br />
@@ -89,6 +90,7 @@ const Login = props => {
             name="password"
             placeholder="password"
             autoComplete="on"
+            required
           />
         </div>
         <br />

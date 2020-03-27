@@ -22,6 +22,13 @@ const SignUp = props => {
   };
 
   const handleSubmit = event => {
+    // if (!username || !email || !password) {
+    //   return err => res.status(401).send({ msg: "Please enter all fields" });
+    //
+    // }
+
+    setErrors([]);
+
     event.preventDefault();
 
     let url = process.env.REACT_APP_API;
@@ -49,7 +56,7 @@ const SignUp = props => {
           setErrors([res.data.msg]);
         }
       })
-      .catch(err => console.log("catch error", err));
+      .catch(err => setErrors(errors => [...errors, err.response.data.msg]));
   }; //handleSubmit
 
   return (
@@ -75,6 +82,7 @@ const SignUp = props => {
             type="text"
             name="username"
             placeholder="username"
+            required
           />
         </div>
         <br />
@@ -85,9 +93,10 @@ const SignUp = props => {
           <input
             value={user.email}
             onChange={handleChange}
-            type="text"
+            type="email"
             name="email"
             placeholder="email"
+            required
           />
         </div>
         <br />
@@ -102,6 +111,7 @@ const SignUp = props => {
             name="password"
             placeholder="password"
             autoComplete="on"
+            required
           />
         </div>
         <br />
