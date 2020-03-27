@@ -56,7 +56,7 @@ const SignUp = props => {
           setErrors([res.data.msg]);
         }
       })
-      .catch(err => setErrors(errors => [...errors, err.response.data.msg]));
+      .catch(err => setErrors(errors => [...errors, ...err.response.data]));
   }; //handleSubmit
 
   return (
