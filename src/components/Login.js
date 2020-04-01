@@ -6,8 +6,8 @@ const Login = props => {
   const [user, setUser] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      username: "",
-      password: ""
+      username: "jordan",
+      password: "chicken"
     }
   );
   const [errors, setErrors] = useState([]);
