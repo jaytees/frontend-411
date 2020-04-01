@@ -1,91 +1,32 @@
-import React from 'react';
+import React from "react";
 
-import styles from './Dashboard.module.css'
+import styles from "./Dashboard.module.css";
 
-import FeedComponent from '../../components/Outlets/FeedComponent'
+import FeedComponent from "../../components/Outlets/FeedComponent";
 
+const Dashboard = props => {
+  props.handleStatus(true);
 
-const Dashboard = ( props ) => {
+  return (
+    <div className={styles.dashboardContainer}>
+      <h1>Dashboard</h1>
 
-  props.handleStatus( true );
-
-  return(
-    <div className={ styles.dashboardContainer }>
-        <h1>Dashboard</h1>
-
-        {
-          props.userFeedData.length > 0
-          ?
-          <div className={ styles.feedRender }>
-            {
-             props.userFeedData.filter( f => f.visible ).map( (f, i) => (
-
-               <FeedComponent feedData={ f } key={ f.outlet_name }/>
-             ))
-           }
-          </div>
-          :
-          <div>loading...</div>
-        }
-
-
+      {props.userFeedData.length > 0 ? (
+        <div className={styles.feedRender}>
+          {props.userFeedData
+            .filter(f => f.visible)
+            .map((f, i) => (
+              <FeedComponent feedData={f} key={f.outlet_name} />
+            ))}
+        </div>
+      ) : (
+        <div>loading...</div>
+      )}
     </div>
-  )
+  );
 };
 
 export default Dashboard;
-
-
-// user.preferences.map( p => {
-//     return (
-//       <div>
-//       <div key={p.outlet_name}>{p.outlet_name}</div>
-//       {
-//         p.categories.map( c => {
-//           return(
-//             <div>
-//               <div onClick={ () => onFeedItemClick( p.outlet_name,  c.category_name) } key={ c.category_name }>{c.category_name}</div>
-//             </div>
-//
-//           )
-//         })
-//       }
-//
-//       </div>
-//     )
-//   })
-
-// {
-//   !loaded ? (<Loading loadState={ loaded }/>)
-//   :
-//   (
-//     <div>
-//     <ul>
-//     {
-//       user.preferences.map( (preference, i) => {
-//         return <li key={i}> {preference} </li>
-//       })
-//     }
-//     </ul>
-//     </div>
-//   )
-// }
-
-
-// user {
-//   username:
-//   email:
-//   preferences: [{
-//     outlet_name:
-//     outlet_route:
-//     categories: [{
-//       category_name:
-//       category_url:
-//     }]
-//   },
-// ]
-// }
-
 
 //beautiful drag thing
 
@@ -115,7 +56,6 @@ export default Dashboard;
 //     columnOrder: [ 'column-1']
 //
 // };
-
 
 // const onDragEnd = ( result ) => {
 //   //responsible for syncronously updatinn drag and drop state

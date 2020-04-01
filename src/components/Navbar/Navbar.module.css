@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   overflow-x: hidden;
-  padding: 1.0em;
+  padding: 1em;
   transition: 0.5s;
 
   display: flex;
@@ -19,25 +19,18 @@
   /* border-right: 2px solid rgb(200, 255, 175); */
 
   margin-bottom: 2em;
-
-}
-
-.outletName {
-  border-bottom: 1px solid grey;
 }
 
 ul {
   list-style: none;
   margin-top: 1em;
-
 }
 
 .category {
   cursor: pointer;
 }
 
-.logoContainer{
-
+.logoContainer {
 }
 
 .icon {
@@ -50,10 +43,10 @@ ul {
 }
 
 .btn {
-    height:20px;
-    border-top:4px solid #333;
-    border-top:4px solid #333;
-    border-bottom:4px solid #333;
+  height: 20px;
+  border-top: 4px solid #333;
+  border-top: 4px solid #333;
+  border-bottom: 4px solid #333;
 }
 
 .menuIconWrapper {
@@ -75,29 +68,29 @@ ul {
   position: absolute;
   left: 0;
   top: -10px;
-  content: '';
+  content: "";
   display: block;
   width: 30px;
   height: 5px;
   background-color: #fff;
   transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
-/*   transform-origin: 0 0%; */
+  /*   transform-origin: 0 0%; */
 }
 
 .menuIcon::after {
   position: absolute;
   left: 0;
   top: 10px;
-  content: '';
+  content: "";
   display: block;
   width: 30px;
   height: 5px;
   background-color: #fff;
   transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
-/*   transform-origin: 0% 100%; */
+  /*   transform-origin: 0% 100%; */
 }
 
-.menuIcon.menuIcon-active{
+.menuIcon.menuIcon-active {
   background-color: transparent;
 }
 
@@ -110,11 +103,13 @@ ul {
 .menuIcon.menuIcon-active::after {
   transform: rotate(-45deg);
   top: 0;
-   transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+  transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 1em;}
+  .sidenav {
+    padding-top: 1em;
+  }
   /* .sidenav a {font-size: 18px;} */
 }
