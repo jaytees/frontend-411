@@ -17,9 +17,11 @@ const LogOut = props => {
   };
 
   return (
-    <h4 className={styles.nav__links} onClick={logOutSubmit}>
-      Log Out
-    </h4>
+    <div className={styles.nav__controls}>
+      <h4 className={styles.nav__links} onClick={logOutSubmit}>
+        Log Out
+      </h4>
+    </div>
   );
 };
 
