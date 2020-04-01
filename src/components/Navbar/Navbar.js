@@ -9,7 +9,7 @@ const Navbar = props => {
   return (
     <div
       className={styles.Navbar}
-      style={props.openState ? { width: "20vw" } : { width: "5vw" }}
+      style={props.openState ? { width: "20vw" } : { width: "min-content" }}
     >
       <div className={styles.logoContainer}>
         <img
