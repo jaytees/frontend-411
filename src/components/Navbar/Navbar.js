@@ -25,12 +25,11 @@ const Navbar = props => {
       {localStorage.getItem("x-auth-header") !== null ? (
         <div>
           <Link to="/profile">
-            <button>Profile</button>
+            <h4 className={styles.nav__links}>Profile</h4>
           </Link>
           <Link to="/dashboard">
-            <button>Dashboard</button>
+            <h4 className={styles.nav__links}>Dashboard</h4>
           </Link>
-          <LogOut passHandleStatus={props.handleStatus} />
           {Object.keys(props.userData.preferences).map(outlet => {
             let outletID = outlet.split(" ").join("-");
             return (
@@ -53,7 +52,7 @@ const Navbar = props => {
                             props.feedSelectionHandler(outlet, category)
                           }
                         >
-                          <h4>{category}</h4>
+                          <h4 className={styles.nav__links}>{category}</h4>
                         </li>
                       </ul>
                     );
@@ -62,14 +61,15 @@ const Navbar = props => {
               </ul>
             );
           })}
+          <LogOut passHandleStatus={props.handleStatus} />
         </div>
       ) : (
         <div>
           <Link to="/login">
-            <button>Login</button>
+            <h4 className={styles.nav__links}>Login</h4>
           </Link>
           <Link to="/signup">
-            <button>Sign Up</button>
+            <h4 className={styles.nav__links}>Sign Up</h4>
           </Link>
         </div>
       )}

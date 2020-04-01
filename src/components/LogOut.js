@@ -1,25 +1,26 @@
-import React from 'react';
-import axios from 'axios';
-import {useHistory} from 'react-router-dom';
+import React from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const LogOut = ( props ) => {
-  let history = useHistory()
+import styles from "./Navbar/Navbar.module.css";
 
-  const logOutSubmit = () =>{
+const LogOut = props => {
+  let history = useHistory();
 
-    localStorage.removeItem('x-auth-header');
-    delete axios.defaults.headers.common['Authorization'];
+  const logOutSubmit = () => {
+    localStorage.removeItem("x-auth-header");
+    delete axios.defaults.headers.common["Authorization"];
     // props.logOutMessage( false, 'Please login or sign up' );
-    props.passHandleStatus( false );
+    props.passHandleStatus(false);
 
-    history.push('/')
+    history.push("/");
+  };
 
-  }
+  return (
+    <h4 className={styles.nav__links} onClick={logOutSubmit}>
+      Log Out
+    </h4>
+  );
+};
 
-  return(
-    <button onClick={logOutSubmit}>Log Out</button>
-  )
-
-}
-
-export default LogOut
+export default LogOut;
