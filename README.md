@@ -10,8 +10,6 @@ I'm sure you're familiar with news aggregation sites, this is no different. An a
 
 https://jaytees.github.io/frontend-slug/#/
 
-## Brief
-
 ## Features
 
 - Select news outlets to subscribe to
@@ -129,19 +127,19 @@ https://github.com/jaytees/backend-slug
 
 ## Screenshots
 
-- Landing Page
+**Landing Page**
 
 ![homepage image](./public/readme/landing-view.png)
 
-- Profile Set-Up
+**Profile Set-Up**
 
 ![setup page image](./public/readme/setup-view.png)
 
-- Dashboard View
+**Dashboard View**
 
 ![dashboard view image](./public/readme/dashboard-view.png)
 
-- Profile View
+**Profile View**
 
 ![profile view image](./public/readme/profile-view.png)
 
