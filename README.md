@@ -49,7 +49,7 @@ https://github.com/jaytees/backend-slug
 - I then wire-framed the front-end, developed the components and functions to render the AJAX responses. Focusing on keeping the code DRY and state controlled in the top level component.
 
 - I approached this project with a lot more consideration for the underlying architecture than any of my previous projects.
-- My goal was to deliver a project where the code looked as good as the design.
+- My goal was to deliver a project where the code looked as good as the UI.
 - It was a necessary decision as this project was heavily reliant on data from a variety of sources, in different formats and how it was then consolidated to be rendered consistently.
 - It was a great challenge and I learnt a lot about parsing data from AJAX requests along the way. I also learnt that it is counter-productive to try and refactor code before you have even written it.
 
