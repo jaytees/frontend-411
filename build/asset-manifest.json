@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/frontend-slug/static/css/main.e2a65237.chunk.css",
+    "main.css": "/frontend-slug/static/css/main.2810abd0.chunk.css",
     "main.js": "/frontend-slug/static/js/main.cbc3b610.chunk.js",
     "main.js.map": "/frontend-slug/static/js/main.cbc3b610.chunk.js.map",
     "runtime-main.js": "/frontend-slug/static/js/runtime-main.c8e3af81.js",
@@ -9,10 +9,10 @@
     "static/js/2.0a6cb652.chunk.js": "/frontend-slug/static/js/2.0a6cb652.chunk.js",
     "static/js/2.0a6cb652.chunk.js.map": "/frontend-slug/static/js/2.0a6cb652.chunk.js.map",
     "index.html": "/frontend-slug/index.html",
-    "precache-manifest.8973709f51f242b2f18759acba6d0e02.js": "/frontend-slug/precache-manifest.8973709f51f242b2f18759acba6d0e02.js",
+    "precache-manifest.c8674484b9ba4a57a0a987ad77155320.js": "/frontend-slug/precache-manifest.c8674484b9ba4a57a0a987ad77155320.js",
     "service-worker.js": "/frontend-slug/service-worker.js",
     "static/css/2.da6a58a2.chunk.css.map": "/frontend-slug/static/css/2.da6a58a2.chunk.css.map",
-    "static/css/main.e2a65237.chunk.css.map": "/frontend-slug/static/css/main.e2a65237.chunk.css.map",
+    "static/css/main.2810abd0.chunk.css.map": "/frontend-slug/static/css/main.2810abd0.chunk.css.map",
     "static/js/2.0a6cb652.chunk.js.LICENSE.txt": "/frontend-slug/static/js/2.0a6cb652.chunk.js.LICENSE.txt",
     "static/media/New-York-Times.png": "/frontend-slug/static/media/New-York-Times.7f385716.png",
     "static/media/Pigeons-and-Planes.png": "/frontend-slug/static/media/Pigeons-and-Planes.b30c3eee.png",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.c8e3af81.js",
     "static/css/2.da6a58a2.chunk.css",
     "static/js/2.0a6cb652.chunk.js",
-    "static/css/main.e2a65237.chunk.css",
+    "static/css/main.2810abd0.chunk.css",
     "static/js/main.cbc3b610.chunk.js"
   ]
 }
