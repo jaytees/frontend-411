@@ -43,8 +43,6 @@ https://jaytees.github.io/frontend-slug/#/
 
 https://github.com/jaytees/backend-slug
 
-## Process
-
 ## Process & Experience
 
 - Full-stack web application, delivering news from 4 sources, each with multiple categories. 1 third party API, 2 RSS feeds and 1 requiring web-scraping.
@@ -85,7 +83,7 @@ https://github.com/jaytees/backend-slug
 - Example document of how outlet information is stored.
 - Array of objects for each outlets categories and there endpoints (This is what is used to create the category selection for preference update).
 
-![outlet document](./frontend-news/public/readme/outlet-document.png)
+![outlet document](./public/readme/outlet-document.png)
 
 - How these user preferences are then stored on the backend.
 
@@ -97,7 +95,7 @@ https://github.com/jaytees/backend-slug
 
 - Outcome of how this data is then stored in state and passed to the feed component.
 
-![feed data Frontend](./frontend-news/public/readme/frontend-feed-data.png)
+![feed data Frontend](./public/readme/frontend-feed-data.png)
 
 **Handling Preference Update Frontend**
 
@@ -112,7 +110,7 @@ https://github.com/jaytees/backend-slug
 - Then return the updated document as the response for re-rendering of the DOM.
 - Particularly happy with the ternary for which option to perform.
 
-![preference update backend](./frontend-news/public/readme/preference-update-backend.png)
+![preference update backend](./public/readme/preference-update-backend.png)
 
 **AJAX Refactoring**
 
@@ -125,9 +123,9 @@ https://github.com/jaytees/backend-slug
 - Whenever a private route is needed add this piece of middleware as a second parameter in the endpoint.
 - Returns the user document.
 
-![auth middleware](./frontend-news/public/readme/auth-middleware1.png)
+![auth middleware](./public/readme/auth-middleware1.png)
 
-![auth middleware](./frontend-news/public/readme/auth-middleware2.png)
+![auth middleware](./public/readme/auth-middleware2.png)
 
 ## Screenshots
 
